@@ -4,7 +4,7 @@ BETA version. Use the tool at your own risk.
 
 # @mhy/config
 This lib is a collection of all configuration and UI panels (ecosystem)
- `@mhy` uses.
+`@mhy` uses.
 
 # Config
 Load configuration based on the current environment from folders
