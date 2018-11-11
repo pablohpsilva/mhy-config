@@ -4,10 +4,14 @@ import path from 'path'
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
+/**
+ * Environment and configuration.
+ * The `mhyJSONConfiguration`
+*/
 const environment = module.exports.environment = process.env.NODE_ENV
-const packageJSON = path.resolve(process.cwd(), 'package.json')
-const json = fs.existsSync(packageJSON)
-	? JSON.parse(fs.readFileSync(packageJSON, 'utf8')).mhy || {}
+const packageJSONFile = path.resolve(process.cwd(), 'package.json')
+const mhyJSONConfiguration = fs.existsSync(packageJSONFile)
+	? JSON.parse(fs.readFileSync(packageJSONFile, 'utf8')).mhy || {}
 	: {}
 export const moduleHome = path.resolve(__dirname)
 const indexTemplatePath = 'src/index.html'
@@ -52,7 +56,7 @@ const applyEntries = (module, env, o) => {
 
 const applyJSON = (module, env, o, j) => {
 	try {
-		j = j || json[module][env] || {}
+		j = j || mhyJSONConfiguration[module][env] || {}
 	} catch (e) { return }
 
 	for (const [k, v] of Object.entries(j)) {
